@@ -10,14 +10,6 @@ const (
 	blocksPerSuperblock = superblockSize / blockSize
 )
 
-// ReadonlyInterface for Bitvector
-type ReadonlyBitvector interface {
-	Get(index int) bool
-	GetWord(index int) uint64
-	Len() int
-	LenWords() int
-}
-
 // Datastructure to allow for fast rank queries
 type Rank struct {
 	// underlying bitvector
@@ -33,7 +25,7 @@ type Rank struct {
 // Caution: Any changes to the underlying bitvector lead to undefined behaviour regarding the rank queries
 // Complexity: O(n) (n == bv.Len())
 func NewRank(bv ReadonlyBitvector) Rank {
-	blocks, superblocks := buildDataStructure(bv)
+	blocks, superblocks := buildRankDataStructure(bv)
 	return Rank{
 		bv:          bv,
 		blocks:      blocks,
@@ -105,7 +97,7 @@ func Rank1Once(bv ReadonlyBitvector, index int) int {
 	return index - Rank0Once(bv, index)
 }
 
-func buildDataStructure(bv ReadonlyBitvector) (blocks []int16, superblocks []int) {
+func buildRankDataStructure(bv ReadonlyBitvector) (blocks []int16, superblocks []int) {
 	superblocks = make([]int, bv.Len()/superblockSize)
 	blocks = make([]int16, bv.Len()/blockSize)
 

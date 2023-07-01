@@ -17,6 +17,14 @@ func NewBitvector(size int) Bitvector {
 	}
 }
 
+// ReadonlyInterface for Bitvector
+type ReadonlyBitvector interface {
+	Get(index int) bool
+	GetWord(index int) uint64
+	Len() int
+	LenWords() int
+}
+
 // Length (in bits)
 func (bv Bitvector) Len() int {
 	return bv.size

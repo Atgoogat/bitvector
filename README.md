@@ -1,16 +1,19 @@
 # Bitvector library written in go
 
-This library contains a simple bitvector implementation and efficient rank queries.
+This library contains a simple bitvector implementation.
+Additionaly there are methods for efficient rank queries and naive select queries.
 
 ## Complexity
 
-|            | Time (Query) | Time (Construction) | Space |
-| ---------- | ------------ | ------------------- | ----- |
-| Bitvector  | O(1)         | O(n)                | o(n)  |
-| Rank.Rank0 | O(1)         | O(n)                | o(n)  |
-| Rank.Rank1 | O(1)         | O(n)                | o(n)  |
-| Rank0Once  | O(n)         | -                   | -     |
-| Rank1Once  | O(n)         | -                   | -     |
+|             | Time (Query) | Time (Construction) | Space |
+| ----------- | ------------ | ------------------- | ----- |
+| Bitvector   | O(1)         | O(n)                | o(n)  |
+| Rank.Rank0  | O(1)         | O(n)                | o(n)  |
+| Rank.Rank1  | O(1)         | O(n)                | o(n)  |
+| Rank0Once   | O(n)         | -                   | -     |
+| Rank1Once   | O(n)         | -                   | -     |
+| Select0Once | O(n)         | -                   | -     |
+| Select1Once | O(n)         | -                   | -     |
 
 ## Example
 

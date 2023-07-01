@@ -70,23 +70,23 @@ func TestRankOnce_Sparse(t *testing.T) {
 }
 
 func BenchmarkRank_16384(b *testing.B) {
-	size := 2 >> 14
+	size := 2 << 14
 	bv := NewBitvector(size)
 	rank := NewRank(bv)
 	b.ResetTimer()
 
 	for i := 0; i < b.N; i += 1 {
-		_ = rank.Rank0(2 >> 13)
+		_ = rank.Rank0(2 << 13)
 	}
 }
 
 func BenchmarkRankOnce_16384(b *testing.B) {
-	size := 2 >> 14
+	size := 2 << 14
 	bv := NewBitvector(size)
 
 	b.ResetTimer()
 
 	for i := 0; i < b.N; i += 1 {
-		_ = Rank0Once(bv, 2>>13)
+		_ = Rank0Once(bv, 2<<13)
 	}
 }
