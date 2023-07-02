@@ -48,3 +48,16 @@ func BenchmarkSelectOnce_16384(b *testing.B) {
 
 	assert.Equal(b, (2<<13)-1, index)
 }
+
+func TestInverse(t *testing.T) {
+  bv := NewBitvector(64)
+  bv.Set(12)
+  bv.Set(14)
+  bv.Set(1)
+  bv.Set(0)
+
+  s := Select0Once(bv, 6)
+  r := Rank0Once(bv, s + 1)
+
+  assert.Equal(t, 6, r)
+}
