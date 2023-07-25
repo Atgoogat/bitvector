@@ -42,3 +42,19 @@ func TestClearAlreadyClearedBit(t *testing.T) {
 	bv.Clear(3)
 	assert.False(t, bv.Get(3))
 }
+
+func TestPopcount(t *testing.T) {
+	bv := NewBitvector(1024)
+	assert.Equal(t, 0, bv.Popcount())
+	bv.Set(4)
+	assert.Equal(t, 1, bv.Popcount())
+}
+
+func TestUnalignedPopcount(t *testing.T) {
+	bv := NewBitvector(500)
+	for i := 0; i < bv.Len(); i += 1 {
+		bv.Set(i)
+	}
+
+	assert.Equal(t, 500, bv.Popcount())
+}

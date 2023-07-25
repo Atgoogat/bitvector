@@ -1,5 +1,7 @@
 package bitvector
 
+import "math/bits"
+
 const (
 	wordSize = 64
 )
@@ -53,6 +55,14 @@ func (bv Bitvector) GetWord(index int) uint64 {
 // Length of underlying words
 func (bv Bitvector) LenWords() int {
 	return len(bv.data)
+}
+
+func (bv Bitvector) Popcount() int {
+	count := 0
+	for _, w := range bv.data {
+		count += bits.OnesCount64(w)
+	}
+	return count
 }
 
 func (bv Bitvector) wordIndex(index int) int {
